@@ -35,7 +35,7 @@ const Navbar = () => {
                   {user ? null : (
                     <span
                       className="h-6 w-px bg-gray-200 "
-                      area-hidden="true"
+                      aria-hidden="true"
                     />
                   )}
                   {user ? (
@@ -51,14 +51,14 @@ const Navbar = () => {
                   {user ? (
                     <span
                       className="h-6 w-px bg-gray-200 "
-                      area-hidden="true"
+                      aria-hidden="true"
                     />
                   ) : null}
                   {user ? null : (
                     <div className="flex bg-gray-200">
                       <span
                         className="h-6 w-px bg-gray-200 "
-                        area-hidden="true"
+                        aria-hidden="true"
                       />
                     </div>
                   )}
