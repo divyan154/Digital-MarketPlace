@@ -24,6 +24,7 @@ const Navbar = () => {
               </div>
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                  {/* // If user is not present, show the link to sign in  */}
                   {user ? null : (
                     <Link
                       href="/sign-in"
@@ -32,12 +33,14 @@ const Navbar = () => {
                       Sign in
                     </Link>
                   )}
+                  {/* The separator if user is not present */}
                   {user ? null : (
                     <span
                       className="h-6 w-px bg-gray-200 "
                       aria-hidden="true"
                     />
                   )}
+                  {/* if user is present, then show him his icon, else show signup */}
                   {user ? (
                     <p></p>
                   ) : (
@@ -48,12 +51,14 @@ const Navbar = () => {
                       Create Account
                     </Link>
                   )}
+                  {/* If user is present, its separator */}
                   {user ? (
                     <span
                       className="h-6 w-px bg-gray-200 "
                       aria-hidden="true"
                     />
                   ) : null}
+                  {/* If user is not present then thats separator */}
                   {user ? null : (
                     <div className="flex bg-gray-200">
                       <span
