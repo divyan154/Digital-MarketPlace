@@ -11,9 +11,10 @@ import { formatPrice } from "@/lib/utils";
 import { Separator } from "@radix-ui/react-separator";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { buttonVariants } from "./ui/button";
 export default function Cart() {
-  const itemCount = 1;
+  const itemCount = 0;
   const fee = 1;
   return (
     <Sheet>
@@ -67,7 +68,28 @@ export default function Cart() {
             </div>
           </>
         ) : (
-          <div className=""></div>
+          <div className="flex h-full flex-col items-center justify-center space-y-1">
+            <div className="relative mb-4 h-60 w-60 text-muted-foreground">
+              <Image
+                src="/hippo-empty-cart.png"
+                alt="Empty Shopping cart hippo"
+                fill
+              />
+            </div>
+            <div className="text-xl font-semibold">Your Cart is Empty</div>
+            <SheetTrigger asChild>
+              <Link
+                href="/products"
+                className={buttonVariants({
+                  variant: "link",
+                  size: "sm",
+                  className: "text-sm text-muted-foreground",
+                })}
+              >
+                Add Items to your Cart to Checkout
+              </Link>
+            </SheetTrigger>
+          </div>
         )}
       </SheetContent>
     </Sheet>
