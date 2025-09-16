@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import path from "path";
 import payload from "payload";
-import type { InitOptions } from "payload/config";
+import type { InitOptions } from "payload";
 // Debug this
 // MongoDb Connection
 dotenv.config({
@@ -27,10 +27,11 @@ export const getPayLoadClient = async ({ initOptions }: Args = {}) => {
   }
   if (!cached.promise) {
     cached.promise = payload.init({
+      // runtime props
       secret: process.env.PAYLOAD_SECRET,
       local: initOptions?.express ? false : true,
       ...(initOptions || {}),
-    });
+    } as unknown as InitOptions);
   }
   try {
     cached.client = await cached.promise;
