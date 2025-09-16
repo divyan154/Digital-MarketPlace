@@ -16,8 +16,13 @@ if (!cached) {
   };
 }
 interface Args {
-  initOptions?: Partial<InitOptions>;
+  initOptions?: Partial<InitOptions> & { express?: any };
 }
+
+type PayloadInitWithSecret = InitOptions & {
+  secret?: string;
+  express?: string; // add other runtime-only properties you use
+};
 export const getPayLoadClient = async ({ initOptions }: Args = {}) => {
   if (!process.env.PAYLOAD_SECRET) {
     throw new Error("PAYLOAD_SECRET is not defined in environment variables");
@@ -27,11 +32,10 @@ export const getPayLoadClient = async ({ initOptions }: Args = {}) => {
   }
   if (!cached.promise) {
     cached.promise = payload.init({
-      // runtime props
       secret: process.env.PAYLOAD_SECRET,
       local: initOptions?.express ? false : true,
       ...(initOptions || {}),
-    } as unknown as InitOptions);
+    } as PayloadInitWithSecret);
   }
   try {
     cached.client = await cached.promise;
